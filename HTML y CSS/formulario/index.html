@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Formulario</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <aside class="sidebar">
+      <div class="left-section">
+        <img class="logo" src="assets/image/odin-lined.png" alt="logo_odin" />
+        <h1>ODIN</h1>
+      </div>
+    </aside>
+
+    <main class="right-section">
+      <section class="section-text">
+        <p>
+          This is not a real online service! You know you need something like
+          this in your life to help you realize your deepest dreams. Sign up now
+          to get started.
+        </p>
+
+        <p>You know you want to.</p>
+      </section>
+
+      <section class="section-form">
+        <h3>Let's do this!</h3>
+        <form class="form" action="">
+          <div class="input-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" placeholder="Thor" required />
+          </div>
+
+          <div class="input-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" placeholder="Odinson" required />
+          </div>
+
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="example@gmail.com"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              placeholder="+58 123 456 7890"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm-password"
+              placeholder="Confirm Password"
+              required
+            />
+          </div>
+        </form>
+      </section>
+
+      <div class="action-container">
+        <button type="submit" class="submit-btn">Create Account</button>
+        <p class="login-text">
+          Already have an account? <a href="#">Log in</a>
+        </p>
+      </div>
+    </main>
+  </body>
+</html>

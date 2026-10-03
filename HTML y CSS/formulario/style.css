@@ -1,0 +1,179 @@
+@font-face {
+  font-family: "FujimaruFont";
+  src: url("font/Fujimaru-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font: 1.2em / 1.5 sans-serif;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  background-color: #f2f2f2;
+  margin: 0;
+}
+
+.sidebar {
+  display: flex;
+  width: 40%;
+  height: 100vh;
+  min-width: 300px;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url("assets/image/torre_japones_2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.right-section {
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.left-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 1.5rem 0;
+  margin-top: 150px;
+}
+
+.left-section h1 {
+  font-size: 3rem;
+  font-family: "FujimaruFont", sans-serif;
+  color: #fff;
+}
+
+.logo {
+  height: 80px;
+  width: auto;
+}
+
+.section-form {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1.5rem 3.5rem;
+  width: 100%;
+  align-self: stretch;
+}
+
+.section-text {
+  padding-left: 3.5rem;
+  padding-right: 2rem;
+  max-width: 580px;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.section-text p:last-child {
+  margin-bottom: 0;
+}
+
+.section-text p {
+  max-width: 580px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.form {
+  display: flex;
+  max-width: 520px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.2rem 2.5rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-bottom: 2rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  width: 230px;
+}
+
+input {
+  max-width: 280px;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  letter-spacing: 1px;
+  color: #555;
+  font-weight: 600;
+}
+
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.1px rgba(0, 123, 255, 0.25);
+}
+
+input:focus:invalid {
+  border-color: #e53e3e;
+  box-shadow: 0 0 0 1px #e53e3e;
+}
+
+input:user-invalid {
+  border-color: #e53e3e;
+}
+
+.submit-btn {
+  background-color: #596d48;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.action-container {
+  padding-left: 3rem;
+  padding-bottom: 1.5rem;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.login-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.login-text a {
+  color: #596d48;
+  font-weight: bold;
+  text-decoration: none;
+}
