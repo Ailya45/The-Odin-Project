@@ -1,0 +1,103 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #0f172a;
+  color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.game-container {
+  text-align: center;
+  background: #1e293b;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  max-width: 400px;
+  width: 100%;
+}
+
+h1 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  color: #38bdf8;
+}
+
+.turn-message {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background-color: #334155;
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.cell {
+  background-color: #0f172a;
+  border: none;
+  aspect-ratio: 1;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #f8fafc;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition:
+    background-color 0.2s,
+    transform 0.1s;
+}
+
+.cell:hover {
+  background-color: #475569;
+}
+
+.cell:active {
+  transform: scale(0.95);
+}
+
+/* Colores dinámicos para X y O si deseas usarlos en JS con clases */
+.cell.x {
+  color: #38bdf8;
+}
+
+.cell.o {
+  color: #f43f5e;
+}
+
+.game-controls {
+  margin-top: 1rem;
+}
+
+.btn {
+  background-color: #38bdf8;
+  color: #0f172a;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+.btn:hover {
+  background-color: #0ea5e9;
+}
