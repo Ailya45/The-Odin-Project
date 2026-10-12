@@ -103,6 +103,70 @@ const GameController = (function () {
     playRound,
     getActivePlayer,
     resetGame,
+    getIsGameOver: () => isGameOver,
     getBoard: Gameboard.getBoard,
   };
+})();
+
+const DisplayController = (function () {
+  const boardCells = document.querySelectorAll(".cell");
+  const turnMessage = document.querySelector("#turn-message");
+  const resetButton = document.querySelector("#restart-btn");
+
+  const renderBoard = () => {
+    const currentBoard = GameController.getBoard();
+    boardCells.forEach((cell, index) => {
+      cell.textContent = currentBoard[index];
+
+      cell.classList.remove("x", "o");
+      if (currentBoard[index] === "X") {
+        cell.classList.add("x");
+      } else if (currentBoard[index] === "O") {
+        cell.classList.add("o");
+      }
+    });
+  };
+  const bindEvents = () => {
+    boardCells.forEach((cell) => {
+      cell.addEventListener("click", (e) => {
+        if (GameController.getIsGameOver()) return;
+
+        const index = Number(e.target.dataset.index);
+
+        GameController.playRound(index);
+        renderBoard();
+
+        updateMessage();
+      });
+    });
+
+    resetButton.addEventListener("click", () => {
+      GameController.resetGame();
+      renderBoard();
+      turnMessage.textContent = "¡Comienza el juego! Turno de Player 1 (X)";
+      turnMessage.style.color = "#94a3b8";
+    });
+  };
+
+  const updateMessage = () => {
+    if (GameController.getIsGameOver()) {
+      const board = GameController.getBoard();
+
+      if (!board.includes("")) {
+        turnMessage.textContent = "Empate 🤝";
+      } else {
+        const activePlayer = GameController.getActivePlayer();
+        turnMessage.textContent = `El ganador es ${activePlayer.getActivePlayer().name} ${activePlayer.getActivePlayer().symbol}`;
+        turnMessage.style.color = "#38bdf8";
+      }
+    } else {
+      const activePlayer = GameController.getActivePlayer();
+      turnMessage.textContent = `Turno de ${activePlayer.getActivePlayer().name} ${activePlayer.getActivePlayer().symbol}`;
+    }
+  };
+
+  bindEvents();
+  renderBoard();
+
+  return { renderBoard };
 })();
