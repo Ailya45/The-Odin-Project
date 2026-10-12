@@ -67,6 +67,12 @@ const GameController = (function () {
     return null;
   };
 
+  // Nuevo método para actualizar nombres desde afuera
+  const setPlayersNames = (nameX, nameO) => {
+    playerX.name = nameX.trim() !== "" ? nameX : "Player 1";
+    playerO.name = nameO.trim() !== "" ? nameO : "Player 2";
+  };
+
   const playRound = (index) => {
     if (isGameOver) return;
 
@@ -103,6 +109,7 @@ const GameController = (function () {
     playRound,
     getActivePlayer,
     resetGame,
+    setPlayersNames,
     getIsGameOver: () => isGameOver,
     getBoard: Gameboard.getBoard,
   };
@@ -112,6 +119,10 @@ const DisplayController = (function () {
   const boardCells = document.querySelectorAll(".cell");
   const turnMessage = document.querySelector("#turn-message");
   const resetButton = document.querySelector("#restart-btn");
+
+  const player1Input = document.querySelector("#player1-input");
+  const player2Input = document.querySelector("#player2-input");
+  const startBtn = document.querySelector("#start-btn");
 
   const renderBoard = () => {
     const currentBoard = GameController.getBoard();
@@ -146,6 +157,16 @@ const DisplayController = (function () {
       turnMessage.textContent = "¡Comienza el juego! Turno de Player 1 (X)";
       turnMessage.style.color = "#94a3b8";
     });
+
+    startBtn.addEventListener("click", () => {
+      const name1 = player1Input.value;
+      const name2 = player2Input.value;
+
+      GameController.setPlayersNames(name1, name2);
+      GameController.resetGame();
+      renderBoard();
+      updateMessage();
+    });
   };
 
   const updateMessage = () => {
@@ -156,17 +177,18 @@ const DisplayController = (function () {
         turnMessage.textContent = "Empate 🤝";
       } else {
         const activePlayer = GameController.getActivePlayer();
-        turnMessage.textContent = `El ganador es ${activePlayer.getActivePlayer().name} ${activePlayer.getActivePlayer().symbol}`;
+        turnMessage.textContent = `El ganador es ${activePlayer.name} ${activePlayer.symbol}`;
         turnMessage.style.color = "#38bdf8";
       }
     } else {
       const activePlayer = GameController.getActivePlayer();
-      turnMessage.textContent = `Turno de ${activePlayer.getActivePlayer().name} ${activePlayer.getActivePlayer().symbol}`;
+      turnMessage.textContent = `Turno de ${activePlayer.name} ${activePlayer.symbol}`;
     }
   };
 
   bindEvents();
   renderBoard();
+  updateMessage();
 
   return { renderBoard };
 })();
