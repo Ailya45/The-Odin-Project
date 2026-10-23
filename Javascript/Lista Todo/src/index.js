@@ -1,26 +1,24 @@
 // src/index.js (Prueba temporal de la Fase 1)
 import { Project } from "./project";
+import { loadProjects, saveProjects } from "./storage";
 import { Todo } from "./todo";
 
-// 1. Creamos un proyecto nuevo
-const miProyecto = new Project("Proyecto de Práctica");
+let projects = loadProjects();
 
-// 2. Creamos una tarea (Todo)
-const tarea1 = new Todo(
-  "Aprender Webpack",
-  "Terminar de entender la configuración y módulos",
-  "2026-06-10",
-  "alta",
-  "Revisar la documentación oficial",
-);
+if (!projects || projects.lenght === 0) {
+  const defaultProject = new Project("Default Project");
 
-// 3. Añadimos la tarea al proyecto
-miProyecto.addTodo(tarea1);
+  const sampleTodo = new Todo(
+    "Explorar la aplicación",
+    "Aprender a usar la lista de tareas de Odin",
+    "2026-06-01",
+    "media",
+    "¡Bienvenido a tu nuevo gestor!",
+  );
 
-// 4. Probamos en la consola
-console.log("Proyecto creado:", miProyecto);
-console.log("¿Está completada?", tarea1.completed);
+  defaultProject.addTodo(sampleTodo);
+  projects = [defaultProject];
+  saveProjects(projects);
+}
 
-// Probamos cambiar el estado
-tarea1.toggleCompleted();
-console.log("¿Está completada ahora?", tarea1.completed);
+console.log("Proyectos cargados en la app:", projects);
