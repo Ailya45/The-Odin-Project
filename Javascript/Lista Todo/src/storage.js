@@ -19,19 +19,21 @@ export function loadProjects() {
       const project = new Project(rawProject.name);
       project.id = rawProject.id;
 
-      project.todos = rawProject.todos.map((rawTodo) => {
-        const todo = new Todo(
-          rawTodo.title,
-          rawTodo.description,
-          rawTodo.dueDate,
-          rawTodo.priority,
-          rawTodo.notes,
-          rawTodo.checkList,
-        );
-        todo.id = rawTodo.id;
-        todo.completed = rawTodo.completed;
-        return todo;
-      });
+      project.todos = rawProject.todos
+        .filter((rawTodo) => rawTodo.title != null)
+        .map((rawTodo) => {
+          const todo = new Todo(
+            rawTodo.title,
+            rawTodo.description,
+            rawTodo.dueDate,
+            rawTodo.priority,
+            rawTodo.notes,
+            rawTodo.checkList,
+          );
+          todo.id = rawTodo.id;
+          todo.completed = rawTodo.completed;
+          return todo;
+        });
 
       return project;
     });

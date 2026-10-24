@@ -11,11 +11,15 @@ module.exports = {
   },
   devServer: {
     static: "./dist",
-    watchFiles: ["src/**/*.html"],
+    port: 8080,
+    open: true,
+    hot: false,
+    liveReload: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/template.html",
+      template: path.resolve(__dirname, "src/template.html"), // <--- Usamos ruta absoluta aquí
+      filename: "index.html",
     }),
   ],
   module: {
