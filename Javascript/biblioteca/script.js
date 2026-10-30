@@ -82,6 +82,7 @@ function removeBookFromLibrary(id) {
 const addBookBtn = document.getElementById("new-book-btn");
 addBookBtn.addEventListener("click", () => {
   const bookModal = document.getElementById("book-modal");
+  clearInputs();
   bookModal.showModal();
 });
 
@@ -94,24 +95,97 @@ cancelBookBtn.addEventListener("click", () => {
 const bookForm = document.getElementById("book-form");
 bookForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  const isValid = bookForm.checkValidity();
+  if (isValid) {
+    titleInput.classList.remove("invalid");
+    titleError.textContent = "";
 
-  const title = document.getElementById("title").value;
-  const autor = document.getElementById("author").value;
-  const page = document.getElementById("pages").value;
-  const read = document.getElementById("read").checked;
+    authorInput.classList.remove("invalid");
+    authorError.textContent = "";
 
-  addBookToLibrary(title, autor, page, read);
+    pagesInput.classList.remove("invalid");
+    pagesError.textContent = "";
 
-  displayBooks();
-  clearInputs();
+    const title = document.getElementById("title").value;
+    const autor = document.getElementById("author").value;
+    const page = document.getElementById("pages").value;
+    const read = document.getElementById("read").checked;
 
-  const bookModal = document.getElementById("book-modal");
-  bookModal.close();
+    addBookToLibrary(title, autor, page, read);
+
+    displayBooks();
+    clearInputs();
+
+    const bookModal = document.getElementById("book-modal");
+    bookModal.close();
+  } else {
+    if (titleInput.validity.valueMissing) {
+      titleError.textContent = "Por favor, ingresa el título del libro.";
+      titleInput.classList.add("invalid");
+    }
+    if (authorInput.validity.valueMissing) {
+      authorError.textContent = "Por favor, ingresa el autor del libro.";
+      authorInput.classList.add("invalid");
+    }
+    if (pagesInput.validity.valueMissing) {
+      pagesError.textContent =
+        "Por favor, ingresa el número de páginas del libro.";
+      pagesInput.classList.add("invalid");
+    }
+  }
 });
 
 function clearInputs() {
+  titleInput.classList.remove("invalid");
+  titleError.textContent = "";
+
+  authorInput.classList.remove("invalid");
+  authorError.textContent = "";
+
+  pagesInput.classList.remove("invalid");
+  pagesError.textContent = "";
   document.getElementById("title").value = "";
   document.getElementById("author").value = "";
   document.getElementById("pages").value = "";
   document.getElementById("read").checked = false;
 }
+
+const titleInput = document.getElementById("title");
+const titleError = document.getElementById("titleError");
+titleInput.addEventListener("input", () => {
+  if (titleInput.validity.valueMissing) {
+    titleInput.classList.add("invalid");
+    titleError.textContent = "Por favor, ingresa el título del libro.";
+  } else {
+    titleInput.classList.remove("invalid");
+    titleError.textContent = "";
+  }
+});
+
+const authorInput = document.getElementById("author");
+const authorError = document.getElementById("authorError");
+authorInput.addEventListener("input", () => {
+  if (authorInput.validity.valueMissing) {
+    authorInput.classList.add("invalid");
+    authorError.textContent = "Por favor, ingresa el autor del libro.";
+  } else {
+    authorInput.classList.remove("invalid");
+    authorError.textContent = "";
+  }
+});
+
+const pagesInput = document.getElementById("pages");
+const pagesError = document.getElementById("pagesError");
+pagesInput.addEventListener("input", () => {
+  if (pagesInput.validity.valueMissing) {
+    pagesInput.classList.add("invalid");
+    pagesError.textContent =
+      "Por favor, ingresa el número de páginas del libro.";
+  } else if (pagesInput.validity.rangeUnderflow) {
+    pagesInput.classList.add("invalid");
+    pagesError.textContent = "El número de páginas no puede ser menor a 1.";
+  } else {
+    pagesInput.classList.remove("invalid");
+    pagesError.textContent = "";
+  }
+});

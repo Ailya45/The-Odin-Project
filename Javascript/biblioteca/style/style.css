@@ -206,6 +206,7 @@ body {
   border: 1px solid var(--border-color);
   border-radius: 6px;
   font-size: 1rem;
+  transition: border-color 0.2s ease;
 }
 
 .checkbox-group {
@@ -225,4 +226,16 @@ body {
   justify-content: flex-end;
   gap: 0.8rem;
   margin-top: 1.5rem;
+}
+
+/* --- ESTILOS DE VALIDACIÓN NUEVOS --- */
+.form-group input.invalid {
+  border-color: var(--danger);
+  background-color: #fef2f2;
+}
+
+.error-message {
+  font-size: 0.8rem;
+  color: var(--danger);
+  min-height: 1rem; /* Evita que el layout brinque al aparecer el texto */
 }

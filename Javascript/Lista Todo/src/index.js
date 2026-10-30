@@ -63,10 +63,6 @@ function updateApp() {
         updateApp();
       },
       onExpandTodo: (todo) => {
-        // console.log("🔍 Objeto todo recibido al hacer clic:", todo);
-        // console.log("🔥 Tarea completa:", todo);
-        // alert("Título: " + (todo ? todo.title : "Es null"));
-        // alert(JSON.stringify(todo, null, 2));
         alert(
           `Detalles de la tarea: \nTítulo: ${todo.title || "Sin título"}\nDescripción: ${todo.description || "Sin descripción"}\nNotas: ${todo.notes || "Sin notas"}`,
         );
