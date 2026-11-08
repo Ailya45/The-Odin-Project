@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aplicación del Clima</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="weather-container">
+      <h1>¿Cómo está el clima hoy?</h1>
+
+      <!-- Formulario de búsqueda -->
+      <form id="weather-form">
+        <input
+          type="text"
+          id="location-input"
+          placeholder="Ingresa una ciudad (ej: Caracas, Madrid)..."
+          required
+        />
+        <button type="submit" id="search-btn">Buscar</button>
+      </form>
+
+      <!-- Botón para alternar unidades (Celsius / Fahrenheit) -->
+      <button id="unit-toggle" class="btn-unit">Cambiar a °F</button>
+
+      <!-- Indicador de carga (Oculto por defecto) -->
+      <div id="loader" class="loader hidden">Buscando clima...</div>
+
+      <!-- Tarjeta donde se mostrará la información del clima -->
+      <div id="weather-card" class="weather-card">
+        <h2 id="location-name">--</h2>
+        <div class="weather-info">
+          <p id="temp-display">--°C</p>
+          <p id="condition-display">--</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enlace a tu script principal (o archivo de entrada si usas módulos) -->
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
